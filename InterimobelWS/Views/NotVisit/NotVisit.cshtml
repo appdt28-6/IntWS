@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Razones de no visita";
+}
+
+<div class="banner">
+    <h2>
+        <a href="#">Razones de No Visita</a>
+    </h2>
+</div>
+<div class="blank">
+    <div class="blank-page">
+        @(Html.Kendo().Grid<InterimobelWS.Models.NOTVISIT>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+          columns.Bound(c => c.vist_id).Title("ID Visista");
+          columns.Bound(c => c.inst_id).Title("Instalador");
+          columns.Bound(c => c.novi_date).Title("Fecha").Format("{0:yyyy-MM-dd}");
+          columns.Bound(c => c.novi_reazon);
+      })
+      .ToolBar(toolbar =>
+      {
+          toolbar.Excel();
+          toolbar.Pdf();
+      })
+      .Pageable()
+      .Scrollable()
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Read(read => read.Action("NOTVISIT_Read", "NotVisit"))
+      )
+        )
+        </div>
+    </div>

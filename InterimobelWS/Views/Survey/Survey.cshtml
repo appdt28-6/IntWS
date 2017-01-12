@@ -1,0 +1,64 @@
+﻿
+@(Html.Kendo().Grid<InterimobelWS.Models.SURVEY>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+          columns.Bound(c => c.surv_id).Title("ID");
+          columns.Bound(c => c.surv_name).Title("Nombre");
+          columns.Bound(c => c.surv_deleted).Hidden();
+          columns.Bound(c => c.surv_datecreate).Hidden();
+          columns.Command(command => {command.Destroy(); }).Width(180);
+      })
+      .ToolBar(toolbar => {
+          toolbar.Create();
+          toolbar.Save();
+          toolbar.Excel();
+          toolbar.Pdf();
+      })
+      .Editable(editable => editable.Mode(GridEditMode.InCell))
+      .Pageable()
+      .Scrollable()
+     .ClientDetailTemplateId("template")
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Batch(true)
+          .Model(model => model.Id(p => p.surv_id))
+          .Read(read => read.Action("SURVEY_Read", "Survey"))
+          .Create(create => create.Action("SURVEY_Create", "Survey"))
+          .Update(update => update.Action("SURVEY_Update", "Survey"))
+          .Destroy(destroy => destroy.Action("SURVEY_Destroy", "Survey"))
+      ).HtmlAttributes(new { style = "height: 600px" })
+)
+<script id="template" type="text/kendo-tmpl">
+    @(Html.Kendo().Grid<InterimobelWS.Models.SURVEY_CUESTION>()
+            .Name("grid_#=surv_id#") // template expression, to be evaluated in the master context
+            .Columns(columns =>
+            {
+                columns.Bound(o => o.surv_id).Hidden();
+                columns.Bound(o => o.surv_cuestion_id).Hidden();
+                columns.Bound(o => o.surv_name_custion).Title("Pregunta");
+                columns.Bound(o => o.surv_type_cuestion).EditorTemplateName("_TypeCuestion").Title("Tipo de Respuesta");
+                columns.Bound(o => o.surv_deleted).Hidden();
+                columns.Command(command => { command.Destroy(); }).Width(180);
+            })
+            .ToolBar(toolbar =>
+            {
+                toolbar.Create();
+                toolbar.Save();
+            })
+             .Editable(editable => editable.Mode(GridEditMode.InCell))
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                 .Batch(true)
+                .Model(model => model.Id(p => p.surv_cuestion_id))
+                .PageSize(10)
+                .Read(read => read.Action("SURVEY_CUESTION_Read", "Survey", new { surv = "#=surv_id#" }))
+                .Create(create => create.Action("SURVEY_CUESTION_Create", "Survey", new { surv = "#=surv_id#" }))
+                .Update(update => update.Action("SURVEY_CUESTION_Update", "Survey", new { surv = "#=surv_id#" }))
+                .Destroy(destroy => destroy.Action("SURVEY_CUESTION_Destroy", "Survey", new { surv = "#=surv_id#" }))
+            ).HtmlAttributes(new { style = "height: 400px" })
+            .Pageable()
+            .Sortable()
+            .ToClientTemplate()
+    )
+</script>

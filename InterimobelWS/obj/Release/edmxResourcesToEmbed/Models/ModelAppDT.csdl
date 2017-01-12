@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_A09B1F_interModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="AppDTEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CUSTOMER" EntityType="DB_A09B1F_interModel.CUSTOMER" />
+    <EntitySet Name="GETSURVEY" EntityType="DB_A09B1F_interModel.GETSURVEY" />
+    <EntitySet Name="NOTVISIT" EntityType="DB_A09B1F_interModel.NOTVISIT" />
+    <EntitySet Name="INSTALLER" EntityType="DB_A09B1F_interModel.INSTALLER" />
+    <EntitySet Name="SURVEY" EntityType="DB_A09B1F_interModel.SURVEY" />
+    <EntitySet Name="SURVEY_CUESTION" EntityType="DB_A09B1F_interModel.SURVEY_CUESTION" />
+    <EntitySet Name="SURVEY_CUESTION_ANSWARE" EntityType="DB_A09B1F_interModel.SURVEY_CUESTION_ANSWARE" />
+    <EntitySet Name="vis_survey" EntityType="DB_A09B1F_interModel.vis_survey" />
+    <EntitySet Name="USUARIO" EntityType="DB_A09B1F_interModel.USUARIO" />
+    <EntitySet Name="VISITA_ASSIGN" EntityType="DB_A09B1F_interModel.VISITA_ASSIGN" />
+    <EntitySet Name="vis_VISITA_CUSTOMER" EntityType="DB_A09B1F_interModel.vis_VISITA_CUSTOMER" />
+    <EntitySet Name="vis_Assigned_Visit" EntityType="DB_A09B1F_interModel.vis_Assigned_Visit" />
+    <EntitySet Name="VISITA_REGISTRO" EntityType="DB_A09B1F_interModel.VISITA_REGISTRO" />
+    <EntitySet Name="SURVEY_CUESTION_OP" EntityType="DB_A09B1F_interModel.SURVEY_CUESTION_OP" />
+    <EntitySet Name="vis_Survey_Data" EntityType="DB_A09B1F_interModel.vis_Survey_Data" />
+    <EntitySet Name="vis_VISITA_NOTVISIT" EntityType="DB_A09B1F_interModel.vis_VISITA_NOTVISIT" />
+    <EntitySet Name="vis_VISITA_REGISTRO" EntityType="DB_A09B1F_interModel.vis_VISITA_REGISTRO" />
+  </EntityContainer>
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="cust_id" />
+    </Key>
+    <Property Name="cust_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cust_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="cust_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_dir" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="cust_longitud" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cust_latitud" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GETSURVEY">
+    <Key>
+      <PropertyRef Name="gets_id" />
+    </Key>
+    <Property Name="gets_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="surv_id" Type="Int32" />
+    <Property Name="inst_id" Type="Int32" />
+    <Property Name="vist_id" Type="Int32" />
+    <Property Name="novi_reazon" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="NOTVISIT">
+    <Key>
+      <PropertyRef Name="novi_id" />
+    </Key>
+    <Property Name="novi_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="vist_id" Type="Int32" />
+    <Property Name="inst_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="novi_date" Type="DateTime" Precision="0" />
+    <Property Name="novi_reazon" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="INSTALLER">
+    <Key>
+      <PropertyRef Name="inst_id" />
+    </Key>
+    <Property Name="inst_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="inst_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="inst_phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="inst_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="inst_role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SURVEY">
+    <Key>
+      <PropertyRef Name="surv_id" />
+    </Key>
+    <Property Name="surv_id" Type="Int32" Nullable="false" />
+    <Property Name="surv_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="surv_deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="surv_datecreate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SURVEY_CUESTION">
+    <Key>
+      <PropertyRef Name="surv_cuestion_id" />
+    </Key>
+    <Property Name="surv_cuestion_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="surv_id" Type="Int32" Nullable="false" />
+    <Property Name="surv_name_custion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="surv_type_cuestion" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="surv_deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SURVEY_CUESTION_ANSWARE">
+    <Key>
+      <PropertyRef Name="surv_answare_id" />
+    </Key>
+    <Property Name="surv_answare_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="surv_cuestion_id" Type="Int32" Nullable="false" />
+    <Property Name="surv_id" Type="Int32" Nullable="false" />
+    <Property Name="surv_answare" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="surv_deleted" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vis_survey">
+    <Key>
+      <PropertyRef Name="surv_id" />
+      <PropertyRef Name="surv_cuestion_id" />
+    </Key>
+    <Property Name="surv_id" Type="Int32" Nullable="false" />
+    <Property Name="surv_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="surv_cuestion_id" Type="Int32" Nullable="false" />
+    <Property Name="surv_name_custion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="surv_type_cuestion" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="Usua_Id" />
+    </Key>
+    <Property Name="Usua_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Usua_nombre" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Usua_Telefono" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Usua_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Usua_Login" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Usua_Password" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Usua_Activo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Usua_FechaCreacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="VISITA_ASSIGN">
+    <Key>
+      <PropertyRef Name="visi_id" />
+    </Key>
+    <Property Name="visi_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cust_id" Type="Int32" Nullable="false" />
+    <Property Name="inst_id" Type="Int32" />
+    <Property Name="visi_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="visi_op" Type="Int32" />
+    <Property Name="visi_status" Type="Int32" />
+    <Property Name="visi_hora" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vis_VISITA_CUSTOMER">
+    <Key>
+      <PropertyRef Name="visi_id" />
+      <PropertyRef Name="cust_id" />
+    </Key>
+    <Property Name="visi_id" Type="Int32" Nullable="false" />
+    <Property Name="inst_id" Type="Int32" />
+    <Property Name="visi_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_id" Type="Int32" Nullable="false" />
+    <Property Name="cust_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="cust_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_dir" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="cust_longitud" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cust_latitud" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="visi_status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vis_Assigned_Visit">
+    <Key>
+      <PropertyRef Name="visi_id" />
+      <PropertyRef Name="inst_id" />
+      <PropertyRef Name="cust_id" />
+    </Key>
+    <Property Name="visi_id" Type="Int32" Nullable="false" />
+    <Property Name="inst_id" Type="Int32" Nullable="false" />
+    <Property Name="inst_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="visi_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_id" Type="Int32" Nullable="false" />
+    <Property Name="cust_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="cust_dir" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="cust_longitud" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cust_latitud" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="visi_op" Type="Int32" />
+    <Property Name="visi_status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VISITA_REGISTRO">
+    <Key>
+      <PropertyRef Name="reg_id" />
+    </Key>
+    <Property Name="reg_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="visi_id" Type="Int32" Nullable="false" />
+    <Property Name="inst_id" Type="Int32" />
+    <Property Name="cust_id" Type="Int32" />
+    <Property Name="reg_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reg_lat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reg_lon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reg_ini" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reg_end" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reg_status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SURVEY_CUESTION_OP">
+    <Key>
+      <PropertyRef Name="op_id" />
+    </Key>
+    <Property Name="op_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="surv_id" Type="Int32" Nullable="false" />
+    <Property Name="surv_c1" Type="Int32" />
+    <Property Name="surv_r1" Type="Int32" />
+    <Property Name="surv_c2" Type="Int32" />
+    <Property Name="surv_r2" Type="Int32" />
+    <Property Name="surv_txt" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="visi_id" Type="Int32" />
+    <Property Name="cust_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vis_Survey_Data">
+    <Key>
+      <PropertyRef Name="surv_id" />
+    </Key>
+    <Property Name="surv_id" Type="Int32" Nullable="false" />
+    <Property Name="surv_r1" Type="Int32" />
+    <Property Name="surv_r2" Type="Int32" />
+    <Property Name="surv_txt" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="visi_id" Type="Int32" />
+    <Property Name="cust_id" Type="Int32" />
+    <Property Name="cust_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="inst_id" Type="Int32" />
+    <Property Name="inst_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reg_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vis_VISITA_NOTVISIT">
+    <Key>
+      <PropertyRef Name="reg_id" />
+      <PropertyRef Name="visi_id" />
+    </Key>
+    <Property Name="reg_id" Type="Int32" Nullable="false" />
+    <Property Name="visi_id" Type="Int32" Nullable="false" />
+    <Property Name="inst_id" Type="Int32" />
+    <Property Name="inst_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_id" Type="Int32" />
+    <Property Name="cust_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reg_ini" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reg_end" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reg_status" Type="Int32" />
+    <Property Name="novi_reazon" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="reg_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vis_VISITA_REGISTRO">
+    <Key>
+      <PropertyRef Name="reg_id" />
+      <PropertyRef Name="visi_id" />
+      <PropertyRef Name="inst_id" />
+      <PropertyRef Name="cust_id" />
+    </Key>
+    <Property Name="reg_id" Type="Int32" Nullable="false" />
+    <Property Name="visi_id" Type="Int32" Nullable="false" />
+    <Property Name="inst_id" Type="Int32" Nullable="false" />
+    <Property Name="inst_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cust_id" Type="Int32" Nullable="false" />
+    <Property Name="cust_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reg_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reg_ini" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reg_end" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reg_status" Type="Int32" />
+  </EntityType>
+</Schema>
