@@ -2,9 +2,9 @@
     ViewBag.Title = "Asignación de Rutas";
 }
 <!-- or when using the Kendo UI CDN -->
-<script src="http://kendo.cdn.telerik.com/<version>/js/jquery.min.js"></script>
-<script src="http://kendo.cdn.telerik.com/<version>/js/kendo.all.min.js"></script>
-<script src="http://kendo.cdn.telerik.com/<version>/js/cultures/kendo.culture.es-ES.min.js"></script>
+<script src="http://kendo.cdn.telerik.com/2016.2.607/js/jquery.min.js"></script>
+<script src="http://kendo.cdn.telerik.com/2016.2.607/js/kendo.all.min.js"></script>
+<script src="http://kendo.cdn.telerik.com/2016.2.607/js/cultures/kendo.culture.es-ES.min.js"></script>
 <div class="banner">
     <h2>
         <a href="#">Asignación de Rutas</a>
@@ -59,8 +59,8 @@
                             <div class="form-group">
                               @(Html.Kendo().DateTimePicker()
         .Name("datetimepicker")
-        .Value(DateTime.Now).Format("{0:dd/MM/yyyy HH:00}")
-       
+        .Value(DateTime.Now).Format("MM/dd/yyyy HH:00")
+
         .HtmlAttributes(new { style = "width:200px;" })
                             )
                             </div>
